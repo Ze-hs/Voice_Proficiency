@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import mediaService from "../services/media";
-import { setTranscript } from "./transcriptReducer";
+import transcript from "../services/transcript";
+import { setAllTranscript } from "./transcriptReducer";
 
 const mediaSlice = createSlice({
     name: "media",
@@ -18,9 +18,10 @@ export const { setMedia } = mediaSlice.actions;
 
 export const uploadMedia = (media) => {
     console.log(media);
-    const response = mediaService.add(media);
+    const { data } = transcript.add(media);
+
     return async (dispatch) => {
-        dispatch(setMedia(response.data));
-        dispatch(setTranscript(response.data));
+        dispatch(setMedia(data.audio_url));
+        // dispatch(setTranscript(data.words));
     };
 };

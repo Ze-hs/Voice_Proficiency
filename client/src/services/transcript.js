@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000/api/transcripts";
+const baseUrl = "http://localhost:3000/transcripts";
 
 const getAll = async () => {
-    const data = await axios.get(baseUrl);
-    console.log(data);
+    const response = await axios.get(baseUrl);
+    return response.data;
 };
 
 //Expects a file

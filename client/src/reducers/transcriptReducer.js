@@ -1,14 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
+import transcriptService from "../services/transcript";
 
-const transcriptSlice = {
-    name: "transcript",
+const transcriptSlice = createSlice({
+    name: "transcripts",
     initialState: [],
     reducers: {
-        setTranscript(state, action) {
+        setAllTranscript(state, action) {
             return action.payload;
         },
     },
-};
+});
 
 export default transcriptSlice.reducer;
-export const { setTranscript } = transcriptSlice.actions;
+export const { setAllTranscript } = transcriptSlice.actions;
+
+export const initializeTranscripts = () => {
+    return async (dispatch) => {
+        const data = await transcriptService.getAll();
+        dispatch(setAllTranscript(data));
+        // setAllTranscript();
+    };
+};
