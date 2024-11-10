@@ -1,6 +1,6 @@
-import { AssemblyAI } from 'assemblyai'
-import config from '../utils/config'
-import utils from '../utils/utils'
+const { AssemblyAI } = require('assemblyai')
+const config = require('../utils/config')
+const utils = require('../utils/utils')
 const client = new AssemblyAI({
   apiKey: config.ASSEMBLY_AI_KEY
 })
