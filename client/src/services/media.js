@@ -8,8 +8,9 @@ const getAll = async () => {
 };
 
 //Expects a file
-const set = async (media) => {
+const add = async (media) => {
     const response = await axios.post(baseUrl, media);
+    return response.data;
 };
 
-export default { set, getAll };
+export default { add, getAll };

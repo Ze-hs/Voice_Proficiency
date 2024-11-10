@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import util from "../utils/utils";
 import mediaService from "../services/media";
+import { setTranscript } from "./transcriptReducer";
 
 const mediaSlice = createSlice({
     name: "media",
@@ -17,10 +17,10 @@ export default mediaSlice.reducer;
 export const { setMedia } = mediaSlice.actions;
 
 export const uploadMedia = (media) => {
-    const jsonFile = util.fileToJson(media);
-    console.log(`Coming from reducer, upload Media`, jsonFile);
+    console.log(media);
+    const response = mediaService.add(media);
     return async (dispatch) => {
-        const data = await mediaService.set(jsonFile);
-        dispatch(setMedia(data));
+        dispatch(setMedia(response.data));
+        dispatch(setTranscript(response.data));
     };
 };

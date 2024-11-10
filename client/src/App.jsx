@@ -1,10 +1,9 @@
-import DropZone from "./components/DropZone";
 import VideoPlayer from "./components/VideoPlayer";
-
+import VideoForm from "./components/VideoForm";
 const App = () => {
     return (
         <>
-            <DropZone />
+            <VideoForm />
             <VideoPlayer />
         </>
     );

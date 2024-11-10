@@ -1,5 +1,5 @@
 const transcriptRouter = require('express').Router()
-const assemblyService = require('../services/assemblyAI')
+const {transcribeVideo} = require('../services/assemblyAI')
 
 transcriptRouter.get('/', (req, res) => {
     res.send('Hello from transcripts')
@@ -8,10 +8,9 @@ transcriptRouter.get('/', (req, res) => {
 transcriptRouter.post('/', async (req, res) => {
     console.log("Coming from the backend post")
     const body = req.body
-    const path = body.path
-    // const data = wait assemblyService()
-    console.log(path)
-    res.json(req.body)
+    console.log(body.link)
+    const data = await transcribeVideo(body.link)
+    res.json(data)
 })
 
 module.exports = transcriptRouter

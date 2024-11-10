@@ -1,29 +1,37 @@
-import Dropzone from "react-dropzone";
 import { useDispatch } from "react-redux";
+import { useField } from "../hooks/hooks";
 import { uploadMedia } from "../reducers/mediaReducer";
-
-const DropZone = () => {
+const VideoForm = () => {
+    const { reset: linkReset, ...link } = useField("text");
+    const { nameReset, ...name } = useField("text");
     const dispatch = useDispatch();
-    // Must change this later to a form with a submit button
-    const handleOnDrop = (file) => {
-        dispatch(uploadMedia(file[0]));
+
+    // Call the backend to parse through the video
+    // Set redux state media to be this one
+    const handleSumbit = (event) => {
+        const mediaObj = {
+            link: link.value,
+        };
+
+        event.preventDefault();
+        dispatch(uploadMedia(mediaObj));
+    };
+
+    const handleReset = () => {
+        linkReset();
+        nameReset();
     };
 
     return (
-        <Dropzone onDrop={handleOnDrop}>
-            {({ getRootProps, getInputProps }) => (
-                <section>
-                    <div {...getRootProps()}>
-                        <input {...getInputProps()} />
-                        <p>
-                            Drag 'n' drop some files here, or click to select
-                            files
-                        </p>
-                    </div>
-                </section>
-            )}
-        </Dropzone>
+        <form onSubmit={handleSumbit}>
+            <label>Link</label>
+            <input {...link}></input>
+            <button>Submit</button>
+            <button type="button" onClick={handleReset}>
+                reset
+            </button>
+        </form>
     );
 };
 
-export default DropZone;
+export default VideoForm;
