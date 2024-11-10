@@ -1,21 +1,31 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { initializeTranscripts } from "../reducers/transcriptReducer";
+import { initializeTranscripts } from "../reducers/transcriptListReducer";
+import { setCurrentTranscript } from "../reducers/transcriptReducer";
+
 const TranscriptList = () => {
     const dispatch = useDispatch();
+    const transcripts = useSelector((state) => state.transcripts);
 
     useEffect(() => {
         dispatch(initializeTranscripts());
     }, []);
 
-    const transcripts = useSelector((state) => state.transcripts);
+    const handleClick = (transcriptObj) => {
+        dispatch(setCurrentTranscript(transcriptObj));
+    };
 
     return (
-        <ul>
+        <div>
             {transcripts.map((transcript) => (
-                <li key={transcript.id}>{transcript.text}</li>
+                <div
+                    onClick={() => handleClick(transcript)}
+                    key={transcript.id}
+                >
+                    {transcript.text}
+                </div>
             ))}
-        </ul>
+        </div>
     );
 };
 

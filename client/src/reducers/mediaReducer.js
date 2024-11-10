@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import transcript from "../services/transcript";
-import { setAllTranscript } from "./transcriptReducer";
+import { setAllTranscript } from "./transcriptListReducer";
 
 const mediaSlice = createSlice({
     name: "media",
