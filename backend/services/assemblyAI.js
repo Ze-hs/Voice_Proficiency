@@ -24,4 +24,11 @@ const transcribeVideo = async (path) => {
   return transcript
 }
 
-module.exports = { transcribeVideo }
+
+const getTranscript = async (id) => {
+  const transcript = await client.transcripts.get(id)
+  return transcript
+}
+
+
+module.exports = { transcribeVideo, getTranscript }
