@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { initializeTranscripts } from "../reducers/transcriptListReducer";
-import { setCurrentTranscript } from "../reducers/transcriptReducer";
+import { getTranscript } from "../reducers/transcriptReducer";
 
 const TranscriptList = () => {
     const dispatch = useDispatch();
@@ -11,18 +11,18 @@ const TranscriptList = () => {
         dispatch(initializeTranscripts());
     }, []);
 
-    const handleClick = (transcriptObj) => {
-        dispatch(setCurrentTranscript(transcriptObj));
+    const handleClick = (id) => {
+        dispatch(getTranscript(id));
     };
 
     return (
         <div>
             {transcripts.map((transcript) => (
                 <div
-                    onClick={() => handleClick(transcript)}
+                    onClick={() => handleClick(transcript.id)}
                     key={transcript.id}
                 >
-                    {transcript.text}
+                    - {transcript.name}
                 </div>
             ))}
         </div>

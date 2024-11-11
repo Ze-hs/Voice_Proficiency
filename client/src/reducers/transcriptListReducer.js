@@ -10,16 +10,20 @@ const transcriptListSlice = createSlice({
         setAllTranscript(state, action) {
             return action.payload;
         },
+
+        addTranscript(state, action) {
+            state.push(action.payload);
+        },
     },
 });
 
 export default transcriptListSlice.reducer;
-export const { setAllTranscript } = transcriptListSlice.actions;
+export const { setAllTranscript, addTranscript } = transcriptListSlice.actions;
 
 export const initializeTranscripts = () => {
     return async (dispatch) => {
         const data = await transcriptService.getAll();
+        console.log(data);
         dispatch(setAllTranscript(data));
-        // setAllTranscript();
     };
 };
