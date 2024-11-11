@@ -17,7 +17,6 @@ export default mediaSlice.reducer;
 export const { setMedia } = mediaSlice.actions;
 
 export const uploadMedia = (media) => {
-    console.log(media);
     const { data } = transcript.add(media);
 
     return async (dispatch) => {

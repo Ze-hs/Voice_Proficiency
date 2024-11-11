@@ -1,0 +1,504 @@
+{
+    "transcripts": [
+        {
+            "id": "a237917b-cad6-420a-b40e-d41b9657c09b",
+            "language_model": "assemblyai_default",
+            "acoustic_model": "assemblyai_default",
+            "language_code": "en_us",
+            "status": "completed",
+            "audio_url": "https://cdn.discordapp.com/attachments/793168970295148575/1305308735509495818/delete2.mp4?ex=67328efe&is=67313d7e&hm=1a81adbec44a17dd850ec5ae58016686ce6701dce3fe24a1584106574fea39d8&",
+            "text": "Imagine Python having a baby with Golang. What would that look like?",
+            "words": [
+                {
+                    "text": "Imagine",
+                    "start": 320,
+                    "end": 808,
+                    "confidence": 0.87906,
+                    "speaker": "A"
+                },
+                {
+                    "text": "Python",
+                    "start": 808,
+                    "end": 1684,
+                    "confidence": 0.58219,
+                    "speaker": "A"
+                },
+                {
+                    "text": "having",
+                    "start": 1985,
+                    "end": 2345,
+                    "confidence": 0.99951,
+                    "speaker": "A"
+                },
+                {
+                    "text": "a",
+                    "start": 2385,
+                    "end": 2609,
+                    "confidence": 0.99597,
+                    "speaker": "A"
+                },
+                {
+                    "text": "baby",
+                    "start": 2657,
+                    "end": 2921,
+                    "confidence": 0.99652,
+                    "speaker": "A"
+                },
+                {
+                    "text": "with",
+                    "start": 2953,
+                    "end": 3193,
+                    "confidence": 0.99761,
+                    "speaker": "A"
+                },
+                {
+                    "text": "Golang.",
+                    "start": 3249,
+                    "end": 4165,
+                    "confidence": 0.52087,
+                    "speaker": "A"
+                },
+                {
+                    "text": "What",
+                    "start": 4665,
+                    "end": 5001,
+                    "confidence": 0.99767,
+                    "speaker": "A"
+                },
+                {
+                    "text": "would",
+                    "start": 5033,
+                    "end": 5201,
+                    "confidence": 0.99725,
+                    "speaker": "A"
+                },
+                {
+                    "text": "that",
+                    "start": 5233,
+                    "end": 5425,
+                    "confidence": 0.99592,
+                    "speaker": "A"
+                },
+                {
+                    "text": "look",
+                    "start": 5465,
+                    "end": 5641,
+                    "confidence": 0.99779,
+                    "speaker": "A"
+                },
+                {
+                    "text": "like?",
+                    "start": 5673,
+                    "end": 5745,
+                    "confidence": 0.98666,
+                    "speaker": "A"
+                }
+            ],
+            "utterances": [
+                {
+                    "speaker": "A",
+                    "text": "Imagine Python having a baby with Golang. What would that look like?",
+                    "confidence": 0.91225165,
+                    "start": 320,
+                    "end": 5745,
+                    "words": [
+                        {
+                            "text": "Imagine",
+                            "start": 320,
+                            "end": 808,
+                            "confidence": 0.87906,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "Python",
+                            "start": 808,
+                            "end": 1684,
+                            "confidence": 0.58219,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "having",
+                            "start": 1985,
+                            "end": 2345,
+                            "confidence": 0.99951,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "a",
+                            "start": 2385,
+                            "end": 2609,
+                            "confidence": 0.99597,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "baby",
+                            "start": 2657,
+                            "end": 2921,
+                            "confidence": 0.99652,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "with",
+                            "start": 2953,
+                            "end": 3193,
+                            "confidence": 0.99761,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "Golang.",
+                            "start": 3249,
+                            "end": 4165,
+                            "confidence": 0.52087,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "What",
+                            "start": 4665,
+                            "end": 5001,
+                            "confidence": 0.99767,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "would",
+                            "start": 5033,
+                            "end": 5201,
+                            "confidence": 0.99725,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "that",
+                            "start": 5233,
+                            "end": 5425,
+                            "confidence": 0.99592,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "look",
+                            "start": 5465,
+                            "end": 5641,
+                            "confidence": 0.99779,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "like?",
+                            "start": 5673,
+                            "end": 5745,
+                            "confidence": 0.98666,
+                            "speaker": "A"
+                        }
+                    ]
+                }
+            ],
+            "confidence": 0.91225165,
+            "audio_duration": 9,
+            "punctuate": true,
+            "format_text": true,
+            "dual_channel": false,
+            "webhook_url": null,
+            "webhook_status_code": null,
+            "webhook_auth": false,
+            "webhook_auth_header_name": null,
+            "speed_boost": false,
+            "auto_highlights_result": null,
+            "auto_highlights": false,
+            "audio_start_from": null,
+            "audio_end_at": null,
+            "word_boost": [],
+            "boost_param": null,
+            "filter_profanity": false,
+            "redact_pii": false,
+            "redact_pii_audio": false,
+            "redact_pii_audio_quality": null,
+            "redact_pii_policies": null,
+            "redact_pii_sub": null,
+            "speaker_labels": true,
+            "content_safety": false,
+            "iab_categories": false,
+            "content_safety_labels": {
+                "status": "unavailable",
+                "results": [],
+                "summary": {}
+            },
+            "iab_categories_result": {
+                "status": "unavailable",
+                "results": [],
+                "summary": {}
+            },
+            "language_detection": false,
+            "language_confidence_threshold": null,
+            "language_confidence": null,
+            "custom_spelling": null,
+            "throttled": false,
+            "auto_chapters": false,
+            "summarization": false,
+            "summary_type": null,
+            "summary_model": null,
+            "custom_topics": false,
+            "topics": [],
+            "speech_threshold": null,
+            "speech_model": null,
+            "chapters": null,
+            "disfluencies": false,
+            "entity_detection": false,
+            "sentiment_analysis": false,
+            "sentiment_analysis_results": null,
+            "entities": null,
+            "speakers_expected": null,
+            "summary": null,
+            "custom_topics_results": null,
+            "is_deleted": null,
+            "multichannel": null
+        } ,
+        {
+            "id": "a237917b-cad6-420a-b40e",
+            "language_model": "assemblyai_default",
+            "acoustic_model": "assemblyai_default",
+            "language_code": "en_us",
+            "status": "completed",
+            "audio_url": "https://cdn.discordapp.com/attachments/793168970295148575/1305308735509495818/delete2.mp4?ex=67328efe&is=67313d7e&hm=1a81adbec44a17dd850ec5ae58016686ce6701dce3fe24a1584106574fea39d8&",
+            "text": "Imagine Python having a baby with Golang. What would that look like?",
+            "words": [
+                {
+                    "text": "Imagine",
+                    "start": 320,
+                    "end": 808,
+                    "confidence": 0.87906,
+                    "speaker": "A"
+                },
+                {
+                    "text": "Python",
+                    "start": 808,
+                    "end": 1684,
+                    "confidence": 0.58219,
+                    "speaker": "A"
+                },
+                {
+                    "text": "having",
+                    "start": 1985,
+                    "end": 2345,
+                    "confidence": 0.99951,
+                    "speaker": "A"
+                },
+                {
+                    "text": "a",
+                    "start": 2385,
+                    "end": 2609,
+                    "confidence": 0.99597,
+                    "speaker": "A"
+                },
+                {
+                    "text": "baby",
+                    "start": 2657,
+                    "end": 2921,
+                    "confidence": 0.99652,
+                    "speaker": "A"
+                },
+                {
+                    "text": "with",
+                    "start": 2953,
+                    "end": 3193,
+                    "confidence": 0.99761,
+                    "speaker": "A"
+                },
+                {
+                    "text": "Golang.",
+                    "start": 3249,
+                    "end": 4165,
+                    "confidence": 0.52087,
+                    "speaker": "A"
+                },
+                {
+                    "text": "What",
+                    "start": 4665,
+                    "end": 5001,
+                    "confidence": 0.99767,
+                    "speaker": "A"
+                },
+                {
+                    "text": "would",
+                    "start": 5033,
+                    "end": 5201,
+                    "confidence": 0.99725,
+                    "speaker": "A"
+                },
+                {
+                    "text": "that",
+                    "start": 5233,
+                    "end": 5425,
+                    "confidence": 0.99592,
+                    "speaker": "A"
+                },
+                {
+                    "text": "look",
+                    "start": 5465,
+                    "end": 5641,
+                    "confidence": 0.99779,
+                    "speaker": "A"
+                },
+                {
+                    "text": "like?",
+                    "start": 5673,
+                    "end": 5745,
+                    "confidence": 0.98666,
+                    "speaker": "A"
+                }
+            ],
+            "utterances": [
+                {
+                    "speaker": "A",
+                    "text": "Imagine Python having a baby with Golang. What would that look like?",
+                    "confidence": 0.91225165,
+                    "start": 320,
+                    "end": 5745,
+                    "words": [
+                        {
+                            "text": "Imagine",
+                            "start": 320,
+                            "end": 808,
+                            "confidence": 0.87906,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "Python",
+                            "start": 808,
+                            "end": 1684,
+                            "confidence": 0.58219,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "having",
+                            "start": 1985,
+                            "end": 2345,
+                            "confidence": 0.99951,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "a",
+                            "start": 2385,
+                            "end": 2609,
+                            "confidence": 0.99597,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "baby",
+                            "start": 2657,
+                            "end": 2921,
+                            "confidence": 0.99652,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "with",
+                            "start": 2953,
+                            "end": 3193,
+                            "confidence": 0.99761,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "Golang.",
+                            "start": 3249,
+                            "end": 4165,
+                            "confidence": 0.52087,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "What",
+                            "start": 4665,
+                            "end": 5001,
+                            "confidence": 0.99767,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "would",
+                            "start": 5033,
+                            "end": 5201,
+                            "confidence": 0.99725,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "that",
+                            "start": 5233,
+                            "end": 5425,
+                            "confidence": 0.99592,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "look",
+                            "start": 5465,
+                            "end": 5641,
+                            "confidence": 0.99779,
+                            "speaker": "A"
+                        },
+                        {
+                            "text": "like?",
+                            "start": 5673,
+                            "end": 5745,
+                            "confidence": 0.98666,
+                            "speaker": "A"
+                        }
+                    ]
+                }
+            ],
+            "confidence": 0.91225165,
+            "audio_duration": 9,
+            "punctuate": true,
+            "format_text": true,
+            "dual_channel": false,
+            "webhook_url": null,
+            "webhook_status_code": null,
+            "webhook_auth": false,
+            "webhook_auth_header_name": null,
+            "speed_boost": false,
+            "auto_highlights_result": null,
+            "auto_highlights": false,
+            "audio_start_from": null,
+            "audio_end_at": null,
+            "word_boost": [],
+            "boost_param": null,
+            "filter_profanity": false,
+            "redact_pii": false,
+            "redact_pii_audio": false,
+            "redact_pii_audio_quality": null,
+            "redact_pii_policies": null,
+            "redact_pii_sub": null,
+            "speaker_labels": true,
+            "content_safety": false,
+            "iab_categories": false,
+            "content_safety_labels": {
+                "status": "unavailable",
+                "results": [],
+                "summary": {}
+            },
+            "iab_categories_result": {
+                "status": "unavailable",
+                "results": [],
+                "summary": {}
+            },
+            "language_detection": false,
+            "language_confidence_threshold": null,
+            "language_confidence": null,
+            "custom_spelling": null,
+            "throttled": false,
+            "auto_chapters": false,
+            "summarization": false,
+            "summary_type": null,
+            "summary_model": null,
+            "custom_topics": false,
+            "topics": [],
+            "speech_threshold": null,
+            "speech_model": null,
+            "chapters": null,
+            "disfluencies": false,
+            "entity_detection": false,
+            "sentiment_analysis": false,
+            "sentiment_analysis_results": null,
+            "entities": null,
+            "speakers_expected": null,
+            "summary": null,
+            "custom_topics_results": null,
+            "is_deleted": null,
+            "multichannel": null
+        } 
+    ]
+}
+
+

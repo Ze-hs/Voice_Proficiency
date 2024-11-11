@@ -1,7 +1,18 @@
+import { useRef, forwardRef, useImperativeHandle } from "react";
 import ReactPlayer from "react-player/lazy";
 import { useSelector } from "react-redux";
-const VideoPlayer = () => {
-    const data = useSelector((state) => state.media);
+
+const VideoPlayer = forwardRef((_props, refs) => {
+    const data = useSelector((state) => state.currentTranscript);
+    const reactPlayerRef = useRef();
+
+    useImperativeHandle(
+        refs,
+        () => {
+            return reactPlayerRef.current;
+        },
+        [data]
+    );
 
     if (!data) {
         return <p>No video selected</p>;
@@ -9,8 +20,12 @@ const VideoPlayer = () => {
 
     return (
         // Lazy load the YouTube player
-        <ReactPlayer controls={true} />
+        <ReactPlayer
+            ref={reactPlayerRef}
+            url={data.audio_url}
+            controls={true}
+        />
     );
-};
+});
 
 export default VideoPlayer;
