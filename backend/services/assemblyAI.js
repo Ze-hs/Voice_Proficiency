@@ -1,34 +1,31 @@
-const { AssemblyAI } = require('assemblyai')
-const config = require('../utils/config')
-const utils = require('../utils/utils')
+const { AssemblyAI } = require("assemblyai");
+const config = require("../utils/config");
+const utils = require("../utils/utils");
 
 const client = new AssemblyAI({
-  apiKey: config.ASSEMBLY_AI_KEY
-})
+    apiKey: config.ASSEMBLY_AI_KEY,
+});
 
 const transcribeVideo = async (path) => {
-  const params = {
-    audio: path,
-    speaker_labels: true
-  }
+    const params = {
+        audio: path,
+        speaker_labels: true,
+    };
 
-  const transcript = await client.transcripts.transcribe(params)
+    const transcript = await client.transcripts.transcribe(params);
 
-  // const transcript = "Worked"
-  if (transcript.status === 'error') {
-    utils.error(`Transcription failed: ${transcript.error}`)
-    throw new Error('Transcription Failed')
-  }
+    // const transcript = "Worked"
+    if (transcript.status === "error") {
+        utils.error(`Transcription failed: ${transcript.error}`);
+        throw new Error("Transcription Failed");
+    }
 
-  console.log(transcript.text)
-  return transcript
-}
-
+    return transcript;
+};
 
 const getTranscript = async (id) => {
-  const transcript = await client.transcripts.get(id)
-  return transcript
-}
+    const transcript = await client.transcripts.get(id);
+    return transcript;
+};
 
-
-module.exports = { transcribeVideo, getTranscript }
+module.exports = { transcribeVideo, getTranscript };
