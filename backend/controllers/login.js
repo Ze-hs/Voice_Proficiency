@@ -7,7 +7,7 @@ const config = require("../utils/config");
 
 loginRouter.post("/", async (req, res) => {
     const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username }).populate("transcripts");
 
     // Check if password matches
     const passwordCorrect =
@@ -26,7 +26,7 @@ loginRouter.post("/", async (req, res) => {
         id: user.id,
     };
 
-    const token = jwt.sign(useForToken, config.SECRET);
+    const token = jwt.sign(useForToken, config.SECRET, { expiresIn: 60 * 60 });
 
     res.status(200).json({
         token,

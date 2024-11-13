@@ -1,5 +1,15 @@
 const logger = require("./utils");
 
+const requestLogger = (request, response, next) => {
+    logger.info(`Request Info ${"=".repeat(60)}\n`);
+    logger.info("Method:", request.method);
+    logger.info("Path:  ", request.path);
+    logger.info("Body:  ", request.body);
+    logger.info("Authorization:  ", request.get("Authorization"));
+    logger.info("---");
+    next();
+};
+
 const errorHandling = (error, request, response, next) => {
     logger.error(error.name, error.message);
 
@@ -9,6 +19,8 @@ const errorHandling = (error, request, response, next) => {
         return response.status(400).send({ error: error.message });
     } else if (error.name === "JsonWebTokenError") {
         return response.status(401).json({ error: "token invalid" });
+    } else if (error.name === "TokenExpiredError") {
+        return response.status(401).json({ error: "token expired" });
     } else if (
         error.name === "MongoServerError" &&
         error.message.includes("E11000 duplicate key error")
@@ -38,4 +50,5 @@ module.exports = {
     unknownEndPoint,
     errorHandling,
     getAuthToken,
+    requestLogger,
 };

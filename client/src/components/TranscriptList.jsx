@@ -6,10 +6,14 @@ import { getTranscript } from "../reducers/transcriptReducer";
 const TranscriptList = () => {
     const dispatch = useDispatch();
     const transcripts = useSelector((state) => state.transcripts);
+    const user = useSelector((state) => state.user);
 
     useEffect(() => {
-        dispatch(initializeTranscripts());
-    }, []);
+        if (user) {
+            console.log("User here", user);
+            dispatch(initializeTranscripts(user.id));
+        }
+    }, [user]);
 
     const handleClick = (id) => {
         dispatch(getTranscript(id));

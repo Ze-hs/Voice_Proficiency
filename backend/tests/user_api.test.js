@@ -88,8 +88,6 @@ describe("Transcript API Test", () => {
             .post("/api/transcripts")
             .send(transcriptInfo)
             .set("Authorization", `Bearer +${loginResponse.body.token.trim()}`);
-
-        console.log(transcriptResponse.body);
     });
 });
 
