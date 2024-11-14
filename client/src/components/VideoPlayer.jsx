@@ -1,14 +1,26 @@
 import { useRef, forwardRef, useImperativeHandle, useState } from "react";
 import ReactPlayer from "react-player/lazy";
 import { useDispatch, useSelector } from "react-redux";
+import Controls from "./Controls";
+import { Container } from "@mui/material";
 
 const VideoPlayer = forwardRef((_props, refs) => {
     const transcript = useSelector((state) => state.currentTranscript);
     const reactPlayerRef = useRef();
 
-    const [isPLaying, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const [volume, setVolume] = useState(0);
+
+    const controlProps = {
+        isPlaying,
+        setIsPlaying,
+        progress,
+        setProgress,
+        volume,
+        setVolume,
+        reactPlayerRef,
+    };
 
     useImperativeHandle(
         refs,
@@ -18,37 +30,23 @@ const VideoPlayer = forwardRef((_props, refs) => {
         [transcript]
     );
 
-    const handlePlay = () => {
-        setIsPlaying(true);
-    };
-    const handlePause = () => {
-        setIsPlaying(false);
-    };
-    const onProgressDrag = (event) => {
-        handlePause();
-        reactPlayerRef.current.seekTo(progress, "fraction");
-    };
-    const onProgressDragStop = (event) => {
-        handlePlay();
-    };
-    const onVolumeDrag = (event) => {
-        setVolume(event.target.value);
-    };
-
     if (!transcript) {
         return <p>No video selected</p>;
     }
 
     return (
         // Lazy load the YouTube player
-        <ReactPlayer
-            ref={reactPlayerRef}
-            url={transcript.audio_url}
-            controls={true}
-            playing={isPLaying}
-        />
-
-        // Controls
+        <Container>
+            // Lazy load the YouTube player
+            <ReactPlayer
+                ref={reactPlayerRef}
+                url={transcript.audio_url}
+                controls={true}
+                playing={isPlaying}
+            />
+            // Controls
+            <Controls {...controlProps} />
+        </Container>
     );
 });
 

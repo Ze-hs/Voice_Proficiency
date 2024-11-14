@@ -1,12 +1,20 @@
-import { Contrainer } from "@mui/material";
-
-const Controls = () => {
+import { Container, Slider, Stack, Button } from "@mui/material";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
+import CircleIcon from "@mui/icons-material/Circle";
+const Controls = ({
+    isPlaying,
+    setIsPlaying,
+    progress,
+    setProgress,
+    volume,
+    setVolume,
+    reactPlayerRef,
+}) => {
     const handlePlay = () => {
-        setIsPlaying(true);
+        setIsPlaying(!isPlaying);
     };
-    const handlePause = () => {
-        setIsPlaying(false);
-    };
+
     const onProgressDrag = (event) => {
         handlePause();
         reactPlayerRef.current.seekTo(progress, "fraction");
@@ -18,7 +26,15 @@ const Controls = () => {
         setVolume(event.target.value);
     };
 
-    return null;
+    return (
+        <Stack direction="row">
+            <Button onClick={handlePlay}>
+                {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+            </Button>
+
+            <Container></Container>
+        </Stack>
+    );
 };
 
 export default Controls;
