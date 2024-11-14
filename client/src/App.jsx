@@ -7,6 +7,9 @@ import { useEffect, useRef } from "react";
 import LoginForm from "./components/LoginForm";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./reducers/userReducer";
+
+import { Box } from "@mui/material";
+
 const App = () => {
     const reactPlayerRef = useRef();
     const user = useSelector((state) => state.user);
@@ -22,14 +25,14 @@ const App = () => {
     }, []);
 
     return (
-        <>
+        <Box>
             {!user && <LoginForm />}
 
             <TranscriptList />
             <VideoForm />
             <VideoPlayer ref={reactPlayerRef} />
             <Transcript videoPlayerRef={reactPlayerRef} />
-        </>
+        </Box>
     );
 };
 
