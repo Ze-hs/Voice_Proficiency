@@ -19,18 +19,19 @@ export const { setMedia } = mediaSlice.actions;
 // Media should have a link and name
 export const uploadMedia = (media) => {
     return async (dispatch) => {
-        console.log(media.link);
-        const response = await transcriptService.add(media);
-        console.log(response);
+        try {
+            const response = await transcriptService.add(media);
 
-        const newMediaObj = {
-            name: media.name,
-            ...response,
-        };
+            const newMediaObj = {
+                name: media.name,
+                ...response,
+            };
 
-        console.log(newMediaObj);
-        dispatch(setMedia(response.url));
-        dispatch(addTranscript(newMediaObj));
-        // dispatch(setTranscript(data.words));
+            dispatch(setMedia(response.url));
+            dispatch(addTranscript(newMediaObj));
+            // dispatch(setTranscript(data.words));
+        } catch (error) {
+            console.log("transcription failed");
+        }
     };
 };

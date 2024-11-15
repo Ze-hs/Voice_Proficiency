@@ -1,17 +1,15 @@
-import VideoPlayer from "./components/VideoPlayer";
 import VideoForm from "./components/VideoForm";
-import TranscriptList from "./components/TranscriptList";
-import Transcript from "./components/Transcript";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import LoginForm from "./components/LoginForm";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./reducers/userReducer";
 
 import { Box } from "@mui/material";
+import MediaContainer from "./components/MediaContainer";
+import SideBar from "./components/Sidebar/Sidebar";
 
 const App = () => {
-    const reactPlayerRef = useRef();
     const user = useSelector((state) => state.user);
 
     const dispatch = useDispatch();
@@ -26,12 +24,8 @@ const App = () => {
 
     return (
         <Box>
-            {!user && <LoginForm />}
-
-            <TranscriptList />
-            <VideoForm />
-            <VideoPlayer ref={reactPlayerRef} />
-            <Transcript videoPlayerRef={reactPlayerRef} />
+            {user ? <MediaContainer /> : <LoginForm />}
+            <SideBar />
         </Box>
     );
 };

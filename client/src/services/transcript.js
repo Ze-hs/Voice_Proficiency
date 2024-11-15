@@ -26,14 +26,24 @@ const get = async (id) => {
 // 1. Media url: String
 // 2. Media name: String
 const add = async (media) => {
-    console.log("token from add", token);
     const config = {
         headers: {
             authorization: token,
         },
     };
+
     const response = await axios.post(baseUrl, media, config);
     return response.data;
 };
 
-export default { add, getAll, get, setToken, getFromUser };
+const update = async (data) => {
+    const config = {
+        headers: {
+            authorization: token,
+        },
+    };
+    const response = await axios.put(baseUrl, data, config);
+    return response.data;
+};
+
+export default { add, getAll, update, get, setToken, getFromUser };

@@ -23,7 +23,6 @@ export const { setAllTranscript, addTranscript } = transcriptListSlice.actions;
 export const initializeTranscripts = (userId) => {
     return async (dispatch) => {
         const data = await transcriptService.getFromUser(userId);
-        console.log(data);
         dispatch(setAllTranscript(data));
     };
 };

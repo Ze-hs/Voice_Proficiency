@@ -1,16 +1,15 @@
 import { useRef, forwardRef, useImperativeHandle, useState } from "react";
 import ReactPlayer from "react-player/lazy";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Controls from "./Controls";
 import { Container } from "@mui/material";
-
 const VideoPlayer = forwardRef((_props, refs) => {
     const transcript = useSelector((state) => state.currentTranscript);
     const reactPlayerRef = useRef();
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
-    const [volume, setVolume] = useState(0);
+    const [volume, setVolume] = useState(1);
 
     const controlProps = {
         isPlaying,
@@ -20,6 +19,15 @@ const VideoPlayer = forwardRef((_props, refs) => {
         volume,
         setVolume,
         reactPlayerRef,
+    };
+
+    const updateProgress = ({ played }) => {
+        // const duration = reactPlayerRef.current.getDuration();
+        // const safeDuration = !duration || duration === 0 ? 1 : duration;
+        setProgress(
+            reactPlayerRef.current.getCurrentTime() /
+                reactPlayerRef.current.getDuration()
+        );
     };
 
     useImperativeHandle(
@@ -41,8 +49,9 @@ const VideoPlayer = forwardRef((_props, refs) => {
             <ReactPlayer
                 ref={reactPlayerRef}
                 url={transcript.audio_url}
-                controls={true}
                 playing={isPlaying}
+                onProgress={updateProgress}
+                volume={volume}
             />
             // Controls
             <Controls {...controlProps} />

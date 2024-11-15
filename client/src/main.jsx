@@ -6,7 +6,7 @@ import store from "./reducers/store.js";
 
 // Material & CSS imports
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import "./styles/index.css";
+// import "./styles/index.css";
 
 const theme = createTheme({
     typography: {
