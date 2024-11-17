@@ -2,11 +2,6 @@ const userRouter = require("express").Router();
 const User = require("../models/users");
 const bcrypt = require("bcryptjs");
 
-userRouter.get("/", async (req, res) => {
-    const users = await User.find({}).populate("transcripts");
-    return res.json(users);
-});
-
 userRouter.post("/", async (req, res) => {
     console.log("I reachedb this endpoint");
 

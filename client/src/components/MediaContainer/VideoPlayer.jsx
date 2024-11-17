@@ -22,10 +22,7 @@ const VideoPlayer = forwardRef((_props, refs) => {
     };
 
     const updateProgress = ({ played }) => {
-        setProgress(
-            reactPlayerRef.current.getCurrentTime() /
-                reactPlayerRef.current.getDuration()
-        );
+        setProgress(played);
     };
 
     useImperativeHandle(
@@ -41,13 +38,22 @@ const VideoPlayer = forwardRef((_props, refs) => {
     }
 
     return (
-        <Card sx={{ flex: 2, padding: 2 }}>
+        <Card
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-evenly",
+                flex: 2,
+                padding: 2,
+            }}
+        >
             <ReactPlayer
                 ref={reactPlayerRef}
                 url={transcript.audio_url}
                 playing={isPlaying}
                 onProgress={updateProgress}
                 volume={volume}
+                progressInterval={250}
             />
             <Controls {...controlProps} />
         </Card>

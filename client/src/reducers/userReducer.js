@@ -48,16 +48,14 @@ export const signUp = (credentials) => {
     return async (dispatch) => {
         try {
             const user = await signUpService.signup(credentials);
-            dispatch(setUser(user));
-            addNotification({
-                message: "Sign Up successful! Please Log In Now",
-                type: "success",
-            });
+            dispatch(
+                addNotification({
+                    message: "Sign Up successful! Please Log In Now",
+                    type: "success",
+                })
+            );
         } catch (error) {
-            addNotification({
-                message: "An Error Has Occured! Try Again Later",
-                type: "error",
-            });
+            throw new Error("Error Signing Up");
         }
     };
 };

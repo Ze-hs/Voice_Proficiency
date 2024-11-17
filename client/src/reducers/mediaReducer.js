@@ -21,7 +21,6 @@ export const { setMedia } = mediaSlice.actions;
 export const uploadMedia = (media) => {
     return async (dispatch) => {
         try {
-            console.log(media);
             const response = await transcriptService.add(media);
 
             const newMediaObj = {

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // MaterialUI Imports
 import { Box, Card, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
@@ -8,6 +8,7 @@ const Transcript = ({ videoPlayerRef }) => {
 
     const [highlightPos, setHighlightPos] = useState(null);
     const transcript = useSelector((state) => state.currentTranscript);
+    const [activeWordIndex, setActiveWordIndex] = useState(null);
 
     const getWordProperty = (parent, child) => {
         return {
@@ -18,32 +19,46 @@ const Transcript = ({ videoPlayerRef }) => {
         };
     };
 
+    // Use setInterval inside a useEffect
+    useEffect(() => {
+        const interval = setInterval(onTimeUpdate, 250);
+        return () => clearInterval(interval);
+    }, [transcript, activeWordIndex]);
+
     const onTimeUpdate = () => {
-        const activeWordIndex = transcript.words.findIndex((word) => {
+        if (!transcript || !wordRef.current) return;
+
+        const newActiveWordIndex = transcript.words.findIndex((word) => {
             return videoPlayerRef.current.getCurrentTime() < word.end;
         });
 
-        if (activeWordIndex !== -1) {
-            const activeWord = wordRef.current.childNodes[activeWordIndex];
-            setHighlightPos(
-                getWordProperty(
-                    wordRef.current.getBoundingClientRect(),
-                    activeWord.getBoundingClientRect()
-                )
-            );
+        if (
+            newActiveWordIndex !== -1 &&
+            newActiveWordIndex !== activeWordIndex
+        ) {
+            setActiveWordIndex(newActiveWordIndex);
+
+            const activeWord = wordRef.current.childNodes[newActiveWordIndex];
+            if (activeWord) {
+                setHighlightPos(
+                    getWordProperty(
+                        wordRef.current.getBoundingClientRect(),
+                        activeWord.getBoundingClientRect()
+                    )
+                );
+            }
+
+            activeWord.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            });
         }
-        return activeWordIndex;
     };
 
     //When the user clicks on a specific word, jump towards that timestamp
     const onWordClick = (word) => {
         videoPlayerRef.current.seekTo(word.start, "seconds");
     };
-
-    // Check the current timestamp on the video every second
-    if (transcript) {
-        setInterval(onTimeUpdate, 250);
-    }
 
     if (!transcript) {
         return <Typography> Choose from the list or upload one</Typography>;
@@ -60,6 +75,8 @@ const Transcript = ({ videoPlayerRef }) => {
                     flexWrap: "wrap",
                     gap: ".5em",
                     flex: 2,
+                    overflow: "scroll",
+                    maxHeight: "40vh",
                 }}
             >
                 {/* Transcript words */}

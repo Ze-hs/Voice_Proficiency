@@ -29,7 +29,13 @@ const MediaContainer = () => {
 
     return (
         <Container
-            sx={{ display: "flex", gap: "1.5em", flexDirection: "column" }}
+            sx={{
+                display: "flex",
+                gap: "1.5em",
+                flexDirection: "column",
+                height: "50%",
+                maxHeight: "50%",
+            }}
         >
             <Stack
                 direction="row"

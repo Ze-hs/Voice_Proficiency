@@ -1,8 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useField } from "../../hooks/hooks";
-import { login, signUp } from "../../reducers/userReducer";
+import { signUp } from "../../reducers/userReducer";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 // MUI imports
 import {
     Card,
@@ -15,6 +14,7 @@ import {
     styled,
     Stack,
 } from "@mui/material";
+import { addNotification } from "../../reducers/notificationReducer";
 
 const SignUpForm = () => {
     const dispatch = useDispatch();
@@ -28,20 +28,29 @@ const SignUpForm = () => {
         navigate("/login");
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log({
-            name: name.value,
-            username: username.value,
-            password: password.value,
-        });
-        dispatch(
-            signUp({
-                name: name.value,
-                username: username.value,
-                password: password.value,
-            })
-        );
+
+        try {
+            await dispatch(
+                signUp({
+                    name: name.value,
+                    username: username.value,
+                    password: password.value,
+                })
+            );
+            nameReset();
+            usernameReset();
+            passwordReset();
+            navigate("/");
+        } catch (error) {
+            dispatch(
+                addNotification({
+                    message: "Error! Check Your Credentials",
+                    type: "error",
+                })
+            );
+        }
     };
 
     return (

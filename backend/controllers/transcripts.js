@@ -6,11 +6,6 @@ const User = require("../models/users");
 const config = require("../utils/config");
 const { transcribeVideo, getTranscript } = require("../services/assemblyAI");
 
-transcriptRouter.get("/", async (req, res) => {
-    const result = await Transcript.find({}).populate("user");
-    res.json(result);
-});
-
 transcriptRouter.get("/user/:id", async (req, res) => {
     const userId = req.params.id;
     const result = await Transcript.find({ user: userId });
@@ -90,7 +85,6 @@ transcriptRouter.put("/", async (req, res) => {
             new: true,
         }
     );
-    console.log("Saved Transcript ", savedTranscript);
     res.status(200).json(savedTranscript);
 });
 

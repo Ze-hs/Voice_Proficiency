@@ -39,11 +39,6 @@ const LoginForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(login({ username: username.value, password: password.value }));
-
-        console.log(
-            "From the loginpage",
-            window.localStorage.getItem("loggedAppUser")
-        );
     };
 
     return (
