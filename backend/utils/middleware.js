@@ -21,6 +21,8 @@ const errorHandling = (error, request, response, next) => {
         return response.status(401).json({ error: "token invalid" });
     } else if (error.name === "TokenExpiredError") {
         return response.status(401).json({ error: "token expired" });
+    } else if (error.name === "fetch failed") {
+        return response.status(400).json({ error: "Failed to reach link" });
     } else if (
         error.name === "MongoServerError" &&
         error.message.includes("E11000 duplicate key error")

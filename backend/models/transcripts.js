@@ -9,6 +9,8 @@ const transcriptSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
+    voice_notes: { type: String },
+    body_notes: { type: String },
 });
 
 transcriptSchema.set("toJSON", {

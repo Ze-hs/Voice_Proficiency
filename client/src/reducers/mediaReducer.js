@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import transcriptService from "../services/transcript";
 import { addTranscript } from "./transcriptListReducer";
+import { addNotification } from "./notificationReducer";
 
 const mediaSlice = createSlice({
     name: "media",
@@ -20,6 +21,7 @@ export const { setMedia } = mediaSlice.actions;
 export const uploadMedia = (media) => {
     return async (dispatch) => {
         try {
+            console.log(media);
             const response = await transcriptService.add(media);
 
             const newMediaObj = {
@@ -29,9 +31,19 @@ export const uploadMedia = (media) => {
 
             dispatch(setMedia(response.url));
             dispatch(addTranscript(newMediaObj));
-            // dispatch(setTranscript(data.words));
+            dispatch(
+                addNotification({
+                    message: "Upload Successful",
+                    type: "success",
+                })
+            );
         } catch (error) {
-            console.log("transcription failed");
+            dispatch(
+                addNotification({
+                    message: "Upload Failed, Please Enter a Valid Link",
+                    type: "error",
+                })
+            );
         }
     };
 };

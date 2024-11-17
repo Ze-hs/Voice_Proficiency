@@ -1,23 +1,59 @@
-import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { removeUser } from "../../reducers/userReducer";
 import TranscriptList from "./TranscriptList";
+import { Drawer, List, ListItemButton, ListItemText } from "@mui/material";
+import { useState } from "react";
+import MediaForm from "../MediaContainer/MediaForm";
 const SideBar = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const handleLogOut = () => {
+        dispatch(removeUser());
+        navigate("/login");
+    };
+
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const handleOpenDialog = () => {
+        setDialogOpen(true);
+    };
+    const handleCloseDialog = () => {
+        setDialogOpen(false);
+    };
+
     return (
-        <Box
-            sx={{
-                display: { xs: "none", lg: "flex" },
-                flexDirection: "column",
-                height: "100%",
-                left: 0,
-                maxWidth: "100%",
-                position: "fixed",
-                scrollbarWidth: "none",
-                top: 0,
-                width: "var(--SideNav-width)",
-                zIndex: "var(--SideNav-zIndex)",
-            }}
-        >
-            <TranscriptList />
-        </Box>
+        <>
+            <MediaForm
+                dialogOpen={dialogOpen}
+                handleCloseDialog={handleCloseDialog}
+            />
+            <Drawer
+                variant="permanent"
+                sx={{
+                    width: 240,
+                    flexShrink: 0,
+                    "& .MuiDrawer-paper": {
+                        width: 240,
+                        boxSizing: "border-box",
+                        justifyContent: "space-between",
+                    },
+                }}
+                anchor="left"
+            >
+                <TranscriptList />
+                <List>
+                    <ListItemButton onClick={handleOpenDialog}>
+                        <ListItemText>Upload New</ListItemText>
+                    </ListItemButton>
+                    <ListItemButton>
+                        <ListItemText onClick={handleLogOut}>
+                            Log out
+                        </ListItemText>
+                    </ListItemButton>
+                </List>
+            </Drawer>
+        </>
     );
 };
 

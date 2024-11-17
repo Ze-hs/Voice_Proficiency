@@ -2,7 +2,15 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { initializeTranscripts } from "../../reducers/transcriptListReducer";
 import { getTranscript } from "../../reducers/transcriptReducer";
-import { Stack, Box } from "@mui/material";
+import {
+    List,
+    Box,
+    Typography,
+    ListItemButton,
+    ListItemText,
+    ListSubheader,
+    Button,
+} from "@mui/material";
 
 const TranscriptList = () => {
     const dispatch = useDispatch();
@@ -20,29 +28,30 @@ const TranscriptList = () => {
     };
 
     return (
-        <Stack>
+        <List
+            subheader={
+                <ListSubheader sx={{ fontSize: "1em", color: "black" }}>
+                    Transcripts
+                </ListSubheader>
+            }
+        >
             {transcripts.map((transcript) => (
-                <Box
+                <ListItemButton
                     onClick={() => handleClick(transcript)}
                     key={transcript.id}
-                    sx={{
-                        alignItems: "center",
-                        borderRadius: 1,
-                        color: "var(--NavItem-color)",
-                        cursor: "pointer",
-                        display: "flex",
-                        flex: "0 0 auto",
-                        gap: 1,
-                        p: "6px 16px",
-                        position: "relative",
-                        textDecoration: "none",
-                        whiteSpace: "nowrap",
-                    }}
                 >
-                    {transcript.name}
-                </Box>
+                    <ListItemText
+                        sx={{
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                        }}
+                    >
+                        {transcript.name}
+                    </ListItemText>
+                </ListItemButton>
             ))}
-        </Stack>
+        </List>
     );
 };
 

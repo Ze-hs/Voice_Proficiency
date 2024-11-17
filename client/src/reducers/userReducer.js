@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import loginService from "../services/login";
 import transcriptService from "../services/transcript";
 import signUpService from "../services/signup";
+import { addNotification } from "./notificationReducer";
 
 const userSlice = createSlice({
     name: "user",
@@ -32,8 +33,13 @@ export const login = (credentials) => {
         try {
             const user = await loginService.login(credentials);
             dispatch(setUser(user));
+            dispatch(
+                addNotification({ message: "Logged in", type: "success" })
+            );
         } catch (error) {
-            console.log("Wrong credentials");
+            dispatch(
+                addNotification({ message: "Wrong Credentials", type: "error" })
+            );
         }
     };
 };
@@ -43,8 +49,15 @@ export const signUp = (credentials) => {
         try {
             const user = await signUpService.signup(credentials);
             dispatch(setUser(user));
+            addNotification({
+                message: "Sign Up successful! Please Log In Now",
+                type: "success",
+            });
         } catch (error) {
-            console.log("Error Signing up");
+            addNotification({
+                message: "An Error Has Occured! Try Again Later",
+                type: "error",
+            });
         }
     };
 };

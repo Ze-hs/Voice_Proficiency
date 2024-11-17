@@ -1,7 +1,8 @@
-import { useDispatch } from "react-redux";
-import { useField } from "../hooks/hooks";
-import { login } from "../reducers/userReducer";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useField } from "../../hooks/hooks";
+import { login, signUp } from "../../reducers/userReducer";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 // MUI imports
 import {
     Card,
@@ -15,19 +16,36 @@ import {
     Stack,
 } from "@mui/material";
 
-const LoginForm = () => {
+const SignUpForm = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const { reset: usernameReset, ...username } = useField("text");
+    const { reset: nameReset, ...name } = useField("text");
+    const { reset: usernameReset, ...username } = useField("email");
     const { reset: passwordReset, ...password } = useField("password");
+
+    const onSignUpClick = () => {
+        navigate("/login");
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(login({ username: username.value, password: password.value }));
+        console.log({
+            name: name.value,
+            username: username.value,
+            password: password.value,
+        });
+        dispatch(
+            signUp({
+                name: name.value,
+                username: username.value,
+                password: password.value,
+            })
+        );
     };
 
     return (
-        <SignInContainer>
+        <SignUpContainer>
             <MuiCard variant="outlined">
                 <Typography
                     component="h1"
@@ -37,7 +55,7 @@ const LoginForm = () => {
                         fontSize: "clamp(2rem, 10vw, 2.15rem)",
                     }}
                 >
-                    Log in
+                    Sign Up
                 </Typography>
 
                 <Box
@@ -50,6 +68,20 @@ const LoginForm = () => {
                         gap: 2,
                     }}
                 >
+                    <FormControl>
+                        <FormLabel htmlFor="name">Name</FormLabel>
+                        <TextField
+                            id="name"
+                            name="name"
+                            placeholder="your name"
+                            autoFocus
+                            required
+                            fullWidth
+                            variant="outlined"
+                            {...name}
+                        />
+                    </FormControl>
+
                     <FormControl>
                         <FormLabel htmlFor="email">Email</FormLabel>
                         <TextField
@@ -67,6 +99,8 @@ const LoginForm = () => {
                     </FormControl>
 
                     <FormControl>
+                        <FormLabel htmlFor="password">Password</FormLabel>
+
                         <TextField
                             name="password"
                             placeholder="••••••"
@@ -82,15 +116,23 @@ const LoginForm = () => {
                     </FormControl>
 
                     <Button type="submit" fullWidth variant="contained">
-                        Sign in
+                        Sign Up
+                    </Button>
+                    <Button
+                        type="button"
+                        fullWidth
+                        variant="outlined"
+                        onClick={onSignUpClick}
+                    >
+                        Log In
                     </Button>
                 </Box>
             </MuiCard>
-        </SignInContainer>
+        </SignUpContainer>
     );
 };
 
-export default LoginForm;
+export default SignUpForm;
 
 // Container elements modified using MUI
 const MuiCard = styled(Card)(({ theme }) => ({
@@ -112,7 +154,7 @@ const MuiCard = styled(Card)(({ theme }) => ({
     }),
 }));
 
-const SignInContainer = styled(Stack)(({ theme }) => ({
+const SignUpContainer = styled(Stack)(({ theme }) => ({
     height: "calc((1 - var(--template-frame-height, 0)) * 100dvh)",
     minHeight: "100%",
     padding: theme.spacing(2),

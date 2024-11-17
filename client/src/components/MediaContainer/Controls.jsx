@@ -33,7 +33,13 @@ const Controls = ({
     };
 
     return (
-        <Stack direction="row">
+        <Stack
+            direction="row"
+            alignItems="center"
+            spacing={2}
+            marginRight="2.75em"
+            marginTop="1em"
+        >
             <Button onClick={handlePlay}>
                 {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
             </Button>
@@ -49,15 +55,18 @@ const Controls = ({
                 />
             </Container>
 
-            <VolumeUpIcon />
+            <Stack direction="row" alignItems="center" spacing={1}>
+                <VolumeUpIcon />
 
-            <Slider
-                value={volume}
-                onChange={onVolumeDrag}
-                step={0.01}
-                min={0}
-                max={1}
-            />
+                <Slider
+                    value={volume}
+                    onChange={onVolumeDrag}
+                    step={0.01}
+                    min={0}
+                    max={1}
+                    sx={{ width: 100 }}
+                />
+            </Stack>
         </Stack>
     );
 };

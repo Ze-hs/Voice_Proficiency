@@ -14,7 +14,6 @@ const transcribeVideo = async (path) => {
 
     const transcript = await client.transcripts.transcribe(params);
 
-    // const transcript = "Worked"
     if (transcript.status === "error") {
         utils.error(`Transcription failed: ${transcript.error}`);
         throw new Error("Transcription Failed");
@@ -25,7 +24,14 @@ const transcribeVideo = async (path) => {
 
 const getTranscript = async (id) => {
     const transcript = await client.transcripts.get(id);
-    return transcript;
+
+    const newTranscript = {
+        audio_url: transcript.audio_url,
+        id: transcript.id,
+        words: transcript.words,
+    };
+
+    return newTranscript;
 };
 
 module.exports = { transcribeVideo, getTranscript };

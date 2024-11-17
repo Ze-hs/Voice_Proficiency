@@ -2,7 +2,7 @@ import { useRef, forwardRef, useImperativeHandle, useState } from "react";
 import ReactPlayer from "react-player/lazy";
 import { useSelector } from "react-redux";
 import Controls from "./Controls";
-import { Container } from "@mui/material";
+import { Card } from "@mui/material";
 const VideoPlayer = forwardRef((_props, refs) => {
     const transcript = useSelector((state) => state.currentTranscript);
     const reactPlayerRef = useRef();
@@ -22,8 +22,6 @@ const VideoPlayer = forwardRef((_props, refs) => {
     };
 
     const updateProgress = ({ played }) => {
-        // const duration = reactPlayerRef.current.getDuration();
-        // const safeDuration = !duration || duration === 0 ? 1 : duration;
         setProgress(
             reactPlayerRef.current.getCurrentTime() /
                 reactPlayerRef.current.getDuration()
@@ -43,9 +41,7 @@ const VideoPlayer = forwardRef((_props, refs) => {
     }
 
     return (
-        // Lazy load the YouTube player
-        <Container>
-            // Lazy load the YouTube player
+        <Card sx={{ flex: 2, padding: 2 }}>
             <ReactPlayer
                 ref={reactPlayerRef}
                 url={transcript.audio_url}
@@ -53,9 +49,8 @@ const VideoPlayer = forwardRef((_props, refs) => {
                 onProgress={updateProgress}
                 volume={volume}
             />
-            // Controls
             <Controls {...controlProps} />
-        </Container>
+        </Card>
     );
 });
 

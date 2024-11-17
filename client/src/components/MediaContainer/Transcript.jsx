@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 // MaterialUI Imports
-import { Box, Typography } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 
 const Transcript = ({ videoPlayerRef }) => {
@@ -50,43 +50,47 @@ const Transcript = ({ videoPlayerRef }) => {
     }
 
     return (
-        <Box
-            ref={wordRef}
-            sx={{
-                position: "relative",
-                marginTop: "1.25%",
-                display: "flex",
-                flexWrap: "wrap",
-                gap: ".3em",
-            }}
-        >
-            {/* Transcript words */}
-            {transcript.words.map((word) => (
-                <Typography
-                    onClick={() => onWordClick(word)}
-                    key={`${word.start}-${word.text}`}
-                    sx={{
-                        display: "inline",
-                        position: "relative",
-                        padding: 0,
-                        margin: 0,
-                        fontSize: "1.05em",
-                        zIndex: 2,
-                    }}
-                >
-                    {word.text}
-                </Typography>
-            ))}
+        <Card sx={{ flex: 1 }}>
             <Box
+                ref={wordRef}
                 sx={{
-                    position: "absolute",
-                    background: "red",
-                    // background: "primary.main",
-                    zIndex: 1,
-                    ...highlightPos,
+                    position: "relative",
+                    margin: "1.5em",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: ".5em",
+                    flex: 2,
                 }}
-            ></Box>
-        </Box>
+            >
+                {/* Transcript words */}
+                {transcript.words.map((word) => (
+                    <Typography
+                        onClick={() => onWordClick(word)}
+                        key={`${word.start}-${word.text}`}
+                        sx={{
+                            display: "inline",
+                            // position: "relative",
+                            lineHeight: "1", // Adjust line height to remove extra spacing
+                            margin: 0, // Remove default margin
+                            padding: 0, // Remove default padding
+                            // fontSize: "1.05em",
+                            zIndex: 2,
+                        }}
+                    >
+                        {word.text}
+                    </Typography>
+                ))}
+                <Box
+                    sx={{
+                        position: "absolute",
+                        opacity: "35%",
+                        backgroundColor: "primary.main",
+                        zIndex: 1,
+                        ...highlightPos,
+                    }}
+                ></Box>
+            </Box>
+        </Card>
     );
 };
 

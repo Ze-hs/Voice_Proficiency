@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { useField } from "../hooks/hooks";
-import { uploadMedia } from "../reducers/mediaReducer";
+import { useField } from "../../hooks/hooks";
+import { uploadMedia } from "../../reducers/mediaReducer";
 const VideoForm = () => {
     const { reset: linkReset, ...link } = useField("text");
     const { reset: nameReset, ...name } = useField("text");

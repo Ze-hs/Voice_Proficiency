@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import transcriptService from "../services/transcript";
-
+import { setAllTranscript } from "./transcriptListReducer";
 import { convertToSec } from "../utils/helper";
+import { addNotification } from "./notificationReducer";
 
 const transcriptSlice = createSlice({
     name: "currentTranscript",
@@ -15,9 +16,9 @@ const transcriptSlice = createSlice({
 
 export const getTranscript = (transcript) => {
     return async (dispatch) => {
-        const { id, body_notes, voice_notes, notes } = transcript;
+        const { id, body_notes, voice_notes, notes, name } = transcript;
         const response = await transcriptService.get(id);
-        const data = { ...response, body_notes, voice_notes, notes };
+        const data = { ...response, name, body_notes, voice_notes, notes };
 
         // If too slow, move this to the backend
         data.words = data.words.map(({ text, start, end }) => {
@@ -45,7 +46,31 @@ export const updateTranscript = (type, name, notes) => {
             ...(type !== "body" && type !== "voice" && { notes }),
         };
 
-        await transcriptService.update(newTranscript);
+        try {
+            await transcriptService.update(newTranscript);
+            const state = getState().transcripts;
+
+            const newState = state.map((transcript) =>
+                transcript.id == currTranscript.id
+                    ? { ...transcript, name }
+                    : transcript
+            );
+            dispatch(setAllTranscript(newState));
+            dispatch(setCurrentTranscript(newTranscript));
+            dispatch(
+                addNotification({
+                    message: "Note Saved",
+                    type: "success",
+                })
+            );
+        } catch (error) {
+            dispatch(
+                addNotification({
+                    message: "Failed To Save Notes. Try Again Later!",
+                    type: "error",
+                })
+            );
+        }
     };
 };
 

@@ -1,5 +1,6 @@
 // Library Imports
 const express = require("express");
+require("express-async-errors");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -24,9 +25,9 @@ app.use(middleware.getAuthToken);
 // Use Routers
 app.use("/api/login", loginRouter);
 app.use("/api/transcripts", transcriptRouter);
-app.use("/api/users", userRouter);
+app.use("/api/user", userRouter);
 
-// app.use(middleware.errorHandling);
+app.use(middleware.errorHandling);
 app.use(middleware.unknownEndPoint);
 
 module.exports = app;

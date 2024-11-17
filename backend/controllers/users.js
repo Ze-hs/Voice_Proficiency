@@ -8,11 +8,14 @@ userRouter.get("/", async (req, res) => {
 });
 
 userRouter.post("/", async (req, res) => {
+    console.log("I reachedb this endpoint");
+
     const { username, name, password } = req.body;
 
     const saltRound = 10;
     const passwordHash = await bcrypt.hash(password, saltRound);
 
+    console.log("Do we have this");
     const user = new User({
         username,
         name,
@@ -20,6 +23,7 @@ userRouter.post("/", async (req, res) => {
     });
 
     const savedUser = await user.save();
+    console.log("Do we have that");
 
     res.status(201).json(savedUser);
 });
