@@ -9,7 +9,7 @@ const client = new AssemblyAI({
 const transcribeVideo = async (path) => {
     const params = {
         audio: path,
-        speaker_labels: true,
+        disfluencies: true,
     };
 
     const transcript = await client.transcripts.transcribe(params);
