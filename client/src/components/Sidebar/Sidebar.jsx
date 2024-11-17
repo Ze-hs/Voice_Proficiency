@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { removeUser } from "../../reducers/userReducer";
 import TranscriptList from "./TranscriptList";
-import { Drawer, List, ListItemButton, ListItemText } from "@mui/material";
+import { Drawer, List, ListItemButton, ListItemText, Box } from "@mui/material";
 import { useState } from "react";
 import MediaForm from "../MediaContainer/MediaForm";
 const SideBar = () => {
@@ -36,13 +36,25 @@ const SideBar = () => {
                     "& .MuiDrawer-paper": {
                         width: 240,
                         boxSizing: "border-box",
-                        justifyContent: "space-between",
+                        display: "flex",
+                        flexDirection: "column",
                     },
                 }}
                 anchor="left"
             >
-                <TranscriptList />
-                <List>
+                <Box
+                    sx={{
+                        flexGrow: 1, // Allows this section to take available space
+                        overflowY: "auto", // Enables scrolling for overflow
+                    }}
+                >
+                    <TranscriptList />
+                </Box>
+                <List
+                    sx={{
+                        borderTop: "1px solid #e0e0e0", // Optional separator
+                    }}
+                >
                     <ListItemButton onClick={handleOpenDialog}>
                         <ListItemText>Upload New</ListItemText>
                     </ListItemButton>

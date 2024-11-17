@@ -65,7 +65,7 @@ const Transcript = ({ videoPlayerRef }) => {
     }
 
     return (
-        <Card sx={{ flex: 1 }}>
+        <Card sx={{ flex: 1, height: "inherit" }}>
             <Box
                 ref={wordRef}
                 sx={{
@@ -74,9 +74,9 @@ const Transcript = ({ videoPlayerRef }) => {
                     display: "flex",
                     flexWrap: "wrap",
                     gap: ".5em",
-                    flex: 2,
-                    overflow: "scroll",
-                    maxHeight: "40vh",
+                    height: "100%",
+                    overflow: "auto",
+                    alignContent: "flex-start",
                 }}
             >
                 {/* Transcript words */}
@@ -94,7 +94,7 @@ const Transcript = ({ videoPlayerRef }) => {
                             zIndex: 2,
                         }}
                     >
-                        {word.text}
+                        {`${word.text} `}
                     </Typography>
                 ))}
                 <Box
@@ -103,6 +103,8 @@ const Transcript = ({ videoPlayerRef }) => {
                         opacity: "35%",
                         backgroundColor: "primary.main",
                         zIndex: 1,
+                        transition: "all 0.2s ease",
+
                         ...highlightPos,
                     }}
                 ></Box>

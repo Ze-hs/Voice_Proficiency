@@ -8,7 +8,7 @@ import SideBar from "./components/Sidebar/Sidebar";
 import MediaContainer from "./components/MediaContainer/MediaContainer";
 import LoginForm from "./components/Authorization/LoginForm";
 
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import SignUpForm from "./components/Authorization/SignUpForm";
 import Notification from "./components/Notifications/Notification";
 
@@ -25,27 +25,38 @@ const App = () => {
     }, []);
 
     return (
-        <Container>
-            <Routes>
-                <Route path="/login" element={<LoginForm />} />
-                <Route path="/signup" element={<SignUpForm />} />
-                <Route
-                    path="/"
-                    element={
-                        user ? (
-                            <Container>
-                                <MediaContainer />
-                                <SideBar />
-                            </Container>
-                        ) : (
-                            <Navigate replace to="/login" />
-                        )
-                    }
-                />
-            </Routes>
-
+        <Box display="flex">
             <Notification />
-        </Container>
+            {user && <SideBar />}
+
+            <Box
+                component="main"
+                sx={{
+                    flexGrow: 1,
+                    display: "flex",
+                    justifyContent: "center", // Centers content horizontally
+                    alignItems: "center", // Centers content vertically
+                    padding: 2,
+                }}
+            >
+                <Routes>
+                    <Route path="/login" element={<LoginForm />} />
+                    <Route path="/signup" element={<SignUpForm />} />
+                    <Route
+                        path="/"
+                        element={
+                            user ? (
+                                <Box>
+                                    <MediaContainer />
+                                </Box>
+                            ) : (
+                                <Navigate replace to="/login" />
+                            )
+                        }
+                    />
+                </Routes>
+            </Box>
+        </Box>
     );
 };
 
