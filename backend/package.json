@@ -7,7 +7,8 @@
     "start": "NODE_ENV=production node index.js",
     "test": "NODE_ENV=test node --test",
     "dev": "NODE_ENV=test nodemon index.js",
-    "server": "json-server db.json"
+    "server": "json-server db.json",
+    "build:ui":"rm -rf dist && cd ../client && npm run build && cp -r dist ../backend"
   },
   "author": "",
   "license": "ISC",
