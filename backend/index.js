@@ -1,9 +1,7 @@
 const app = require("./app");
-const config = require("./utils/config");
+// const config = require("./utils/config");
 const utils = require("./utils/utils");
 
-const PORT = config.PORT || 3001;
-
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 3001, () => {
     utils.info(`Server running on port ${PORT}`);
 });
