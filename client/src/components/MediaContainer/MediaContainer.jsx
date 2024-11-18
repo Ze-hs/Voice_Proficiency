@@ -45,7 +45,7 @@ const MediaContainer = () => {
                     gap: "1.5em",
                 }}
             >
-                <VideoPlayer ref={reactPlayerRef} />
+                <VideoPlayer ref={reactPlayerRef} type={type} />
                 <Transcript videoPlayerRef={reactPlayerRef} />
             </Stack>
 

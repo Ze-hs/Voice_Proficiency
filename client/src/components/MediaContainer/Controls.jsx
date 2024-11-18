@@ -12,6 +12,7 @@ const Controls = ({
     volume,
     setVolume,
     reactPlayerRef,
+    type,
 }) => {
     const handlePlay = () => {
         setIsPlaying(!isPlaying);
@@ -65,6 +66,7 @@ const Controls = ({
                     min={0}
                     max={1}
                     sx={{ width: 100 }}
+                    disabled={type === "body"}
                 />
             </Stack>
         </Stack>

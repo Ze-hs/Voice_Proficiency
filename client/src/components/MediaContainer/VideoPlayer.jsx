@@ -2,8 +2,9 @@ import { useRef, forwardRef, useImperativeHandle, useState } from "react";
 import ReactPlayer from "react-player/lazy";
 import { useSelector } from "react-redux";
 import Controls from "./Controls";
-import { Card } from "@mui/material";
-const VideoPlayer = forwardRef((_props, refs) => {
+import { Card, Container } from "@mui/material";
+
+const VideoPlayer = forwardRef(({ type }, refs) => {
     const transcript = useSelector((state) => state.currentTranscript);
     const reactPlayerRef = useRef();
 
@@ -19,6 +20,7 @@ const VideoPlayer = forwardRef((_props, refs) => {
         volume,
         setVolume,
         reactPlayerRef,
+        type,
     };
 
     const updateProgress = ({ played }) => {
@@ -45,6 +47,7 @@ const VideoPlayer = forwardRef((_props, refs) => {
                 justifyContent: "space-evenly",
                 flex: 2,
                 padding: 2,
+                position: "relative",
             }}
         >
             <ReactPlayer
@@ -52,9 +55,20 @@ const VideoPlayer = forwardRef((_props, refs) => {
                 url={transcript.audio_url}
                 playing={isPlaying}
                 onProgress={updateProgress}
-                volume={volume}
+                volume={type === "body" ? 0 : volume}
                 progressInterval={250}
+                onEnded={() => setIsPlaying(false)}
             />
+            {type === "voice" && (
+                <Container
+                    sx={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: "white",
+                    }}
+                />
+            )}
             <Controls {...controlProps} />
         </Card>
     );
